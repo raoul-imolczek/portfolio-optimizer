@@ -1,5 +1,7 @@
 package eu.eisti.p2k19.fintech.portfolio.main;
 
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,14 +22,14 @@ public class TestApp {
 			Map<String, List<Quotation>> quotationsMap = new HashMap<String, List<Quotation>>();
 			
 			FileReaderUtil util = new FileReaderUtil();
-			quotationsMap.put("AAPL", util .readValues("AAPL"));
-			quotationsMap.put("ALV.DE", util.readValues("ALV.DE"));
-			quotationsMap.put("BNP.PA", util.readValues("BNP.PA"));
-			quotationsMap.put("GOOG", util.readValues("GOOG"));
-			quotationsMap.put("KO", util.readValues("KO"));
-			quotationsMap.put("MCD", util.readValues("MCD"));
-			quotationsMap.put("MSFT", util.readValues("MSFT"));
-			quotationsMap.put("NKE", util.readValues("NKE"));
+			quotationsMap.put("AAPL", util.readValues(getReader("AAPL")));
+			quotationsMap.put("ALV.DE", util.readValues(getReader("ALV.DE")));
+			quotationsMap.put("BNP.PA", util.readValues(getReader("BNP.PA")));
+			quotationsMap.put("GOOG", util.readValues(getReader("GOOG")));
+			quotationsMap.put("KO", util.readValues(getReader("KO")));
+			quotationsMap.put("MCD", util.readValues(getReader("MCD")));
+			quotationsMap.put("MSFT", util.readValues(getReader("MSFT")));
+			quotationsMap.put("NKE", util.readValues(getReader("NKE")));
 
 			Map<String, Double> expectedProfitability = new HashMap<String, Double>();
 			expectedProfitability.put("AAPL", 234.63 / 225.74);
@@ -54,9 +56,13 @@ public class TestApp {
 			e.printStackTrace();
 		}
 		
-		
 	}
-
+	
+	public static Reader getReader(String symbol) {
+		String path = symbol + ".csv";
+        Reader reader = new InputStreamReader(TestApp.class.getClassLoader().getResourceAsStream(path));
+        return reader;
+	}
 
 	
 }

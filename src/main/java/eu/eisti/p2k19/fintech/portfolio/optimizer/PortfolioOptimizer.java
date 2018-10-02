@@ -39,18 +39,14 @@ public class PortfolioOptimizer {
 		
 		if(!computed) computeSolution();
 		
-		System.out.println("----------------");
-
 		Iterator<String> symbolsIterator;
 		symbolsIterator = quotationsMap.keySet().iterator();
 		int k = 0;
 		while(symbolsIterator.hasNext()) {
 			String symbol = symbolsIterator.next();
-			System.out.println(symbol + ": " + solution.getEntry(k));
 			k++;
 		}
 		
-		System.out.println("----------------");
 	}
 
 	private RealVector getIdentityVector(RealMatrix covarianceMatrix) {

@@ -17,14 +17,11 @@ import eu.eisti.p2k19.fintech.portfolio.model.Quotation;
 
 public class FileReaderUtil {
 
-	public List<Quotation> readValues(String symbol) throws IncorrectQuotationsFileException {
+	public List<Quotation> readValues(Reader reader) throws IncorrectQuotationsFileException {
 		List<Quotation> result = new ArrayList<Quotation>();
-		
-		String path = symbol + ".csv";
 		
         try {
 
-            Reader reader = new InputStreamReader(this.getClass().getResourceAsStream(path));
             CSVReader csvReader = new CSVReader(reader);
             
             Iterator<String[]> lines = csvReader.iterator();
@@ -54,14 +51,9 @@ public class FileReaderUtil {
 		return result;
 	}
 	
-	public double readEstimatedProfitability(String symbol) throws IncorrectProfitabilityFileException {
-		List<Quotation> result = new ArrayList<Quotation>();
-		
-		String path = "consensus.csv";
-		
+	public double readEstimatedProfitability(Reader reader, String symbol) throws IncorrectProfitabilityFileException {
         try {
 
-            Reader reader = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream(path));
             CSVReader csvReader = new CSVReader(reader);
             
             Iterator<String[]> lines = csvReader.iterator();
